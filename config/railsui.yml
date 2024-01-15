@@ -1,0 +1,5 @@
+--- !ruby/object:Railsui::Configuration
+application_name: Tinysale
+support_email: support@example.com
+css_framework: tailwind
+theme: hound

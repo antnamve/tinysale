@@ -45,7 +45,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -56,6 +56,12 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # my gems
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'pry-rails'
+  gem 'rspec-rails', '~> 6.0'
 end
 
 group :development do
@@ -71,3 +77,13 @@ end
 
 
 gem "railsui", "~> 1.0", :github => "getrailsui/railsui", :branch => "main"
+gem "devise"
+gem "name_of_person"
+gem "meta-tags"
+
+# my gems
+gem 'sassc-rails'
+
+group :test do
+  gem 'shoulda-matchers', '~> 5.0'
+end

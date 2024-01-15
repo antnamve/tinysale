@@ -13,11 +13,23 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-  </head>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= stylesheet_link_tag "application", "https://unpkg.com/trix@2.0.0/dist/trix.css", "data-turbo-track": "reload" %>
+    <%= render "shared/fonts" %>
+    <%= render "shared/meta" %>
+    <%= yield :head %>
+</head>
 
-  <body>
+  <body class="rui">
+    <%= render "shared/flash" %>
+    <% if content_for(:header).present? %>
+      <%= yield :header %>
+    <% else %>
+      <%= render "shared/nav" %>
+    <% end %>
     <%= yield %>
-  </body>
+  <%= railsui_launcher if Rails.env.development? %>
+</body>
 </html>
