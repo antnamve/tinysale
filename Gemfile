@@ -88,5 +88,5 @@ gem 'friendly_id', '~> 5.4.0'
 gem 'view_component'
 
 group :test do
-  gem 'shoulda-matchers', '~> 5.0'
+  gem 'shoulda-matchers', '~> 6.0'
 end
