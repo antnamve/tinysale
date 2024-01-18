@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 	get 'admin/project', to: 'page#project'
 	get 'admin/projects', to: 'page#projects'
 	get 'admin/dashboard', to: 'page#dashboard'
-	get 'pricing', to: 'page#pricing'
+	get 'pricing', to: 'page#pricing' 
 	get 'about', to: 'page#about'
 
   root "home#index"
@@ -31,4 +31,11 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   get 'dashboard', to: 'dashboard#index'
+
+  resource :products, only: [:index, :edit, :new, :create]
+
+  scope module: :products, path: :products, as: :product do
+    resources :publish, only: :update
+    resources :unpublish, only: :update
+  end
 end

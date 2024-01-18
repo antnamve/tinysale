@@ -29,7 +29,16 @@
     <% else %>
       <%= render "shared/nav" %>
     <% end %>
-    <%= yield %>
+
+    <% if user_signed_in? %>
+      <div>
+        <%= render layouts/sidenav %>
+        <%= yield %>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
+    
     <%= railsui_launcher if Rails.env.development? %>
   </body>
 </html>

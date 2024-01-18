@@ -1,0 +1,23 @@
+<%= product.name %>
+<%= form_with model: @product do |f| %>
+  <%= f.label :slug, 'URL', class: '' %>
+<% end %>
+
+<% if @product.published? %>
+  <%= link_to 'Unpublish', product_unpublish_path(@product), data: { 'turbo-method': :put } %>
+<% else %>
+  <%= link_to 'Publish', product_publish_path(@product), data: { 'turbo-method': :put } %>
+<% end %>
+<%= f.submit 'Save changes' %>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+
+<%= f.label :slug, 'URL', class: '' %>
+https://www.tinysale.co/products/
+
+<%= f.text_field :slug, placeholder: 'airbnr-clone', class: '' %>
+
+<%= f.label :price %>
+<%= f.text_field :price %>

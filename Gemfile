@@ -84,6 +84,8 @@ gem "meta-tags"
 # my gems
 gem 'sassc-rails'
 gem 'money-rails', '~> 1.12'
+gem 'friendly_id', '~> 5.4.0'
+gem 'view_component'
 
 group :test do
   gem 'shoulda-matchers', '~> 5.0'
