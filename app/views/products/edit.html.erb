@@ -1,23 +1,55 @@
-<%= product.name %>
-<%= form_with model: @product do |f| %>
-  <%= f.label :slug, 'URL', class: '' %>
-<% end %>
+<%# /products/airbnb-clone/edit %>
 
-<% if @product.published? %>
-  <%= link_to 'Unpublish', product_unpublish_path(@product), data: { 'turbo-method': :put } %>
-<% else %>
-  <%= link_to 'Publish', product_publish_path(@product), data: { 'turbo-method': :put } %>
-<% end %>
-<%= f.submit 'Save changes' %>
+<%= form_with model: @product, data: { controller: 'product-form' } do |f| %>
+  <%= product.name %>
+  <%= f.label :slug, 'URL', class: '' %>
+
+  <% if @product.published? %>
+    <%= link_to 'Unpublish', product_unpublish_path(@product), data: { 'turbo-method': :put } %>
+  <% else %>
+    <%= link_to 'Publish', product_publish_path(@product), data: { 'turbo-method': :put } %>
+  <% end %>
+  <%= f.submit 'Save changes' %>
+
+<%= link_to 'Product', edit_product_path(@product), class: '' %>
+<%= link_to 'Content', product_contents_path(@product) %>
 
 <%= f.label :name %>
 <%= f.text_field :name %>
 
+<%= f.label :description %>
+<%= f.rich_text_area :description %>
 
 <%= f.label :slug, 'URL', class: '' %>
 https://www.tinysale.co/products/
 
 <%= f.text_field :slug, placeholder: 'airbnr-clone', class: '' %>
 
+<%= f.label :cover, class: '' %>
+<%= if product.cover.attached? %>
+  <%= image_tag @product.cover data: { 'product-form-target': 'thumbnail' } %> <%# .variant %>
+<% else %>
+  <%= image_tag '', data: { 'product-form-target': 'thumbnail' } %>
+<% end %>
+
+<%= f.file_field :thumbnail, data: { 'product-form-target': 'thumbnailInput', action: 'change->product-form#attachThumbnail' }, class: 'hidden' %>
+
+<%= button_tag 'Change', data: { action: 'click->product-form#changeThumbnail' }, class: '' %>
+
+
+<%= f.label :thumbnail, class: '' %>
+
+<%= if product.thumbnail.attached? %>
+  <%= image_tag @product.thumbnail data: { 'product-form-target': 'thumbnail' } %> <%# .variant %>
+<% else %>
+  <%= image_tag '', data: { 'product-form-target': 'thumbnail' } %>
+<% end %>
+
+<%= f.file_field :thumbnail, data: { 'product-form-target': 'thumbnailInput', action: 'change->product-form#attachThumbnail' }, class: 'hidden' %>
+
+<%= button_tag 'Change', data: { action: 'click->product-form#changeThumbnail' }, class: '' %>
+
 <%= f.label :price %>
 <%= f.text_field :price %>
+
+<% end %>

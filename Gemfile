@@ -26,9 +26,6 @@ gem "stimulus-rails"
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails"
 
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
-
 # Use Redis adapter to run Action Cable in production
 gem "redis", ">= 4.0.1"
 
@@ -86,6 +83,7 @@ gem 'sassc-rails'
 gem 'money-rails', '~> 1.12'
 gem 'friendly_id', '~> 5.4.0'
 gem 'view_component'
+gem 'jsonapi-serializer'
 
 group :test do
   gem 'shoulda-matchers', '~> 5.0'

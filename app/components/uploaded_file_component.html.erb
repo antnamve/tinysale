@@ -1,0 +1,67 @@
+<li
+  data-controller="uploaded-file"
+  data-uploaded-file-file-picker-outlet=".file-picker"
+  data-content-id="<%= @content_id %>"
+  class="uploaded-file-component relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6"
+>
+</li>
+<div
+  data-controller="uploaded-file"
+  data-uploaded-file-file-picker-outlet=".file-picker"
+  data-content-id="<%= @content_id %>"
+  data-upload-completed="<%= @upload_completed %>"
+  class=""
+>
+  <div class="flex items-center">
+    <div class="flex-shrink-0">
+      <svg>
+        <path>
+     </svg>
+    </div>
+    <div class="min-w-0 flex-0">
+      <div class="focus:outline-none">
+        <span class="absolute inset-0" aria-hidden = true></span>
+        <p class="text-sm font-medium text-gray-900"><%= @name %></p>
+        <p class="truncate text-sm text-gray-500">
+          <span 
+            class="hidden"
+            data-uploaded-file-target="uploadProgress"
+            data-file-type="<%= @file_type.match(/\/(.+)/)[1].upcase %>"
+            data-file-size="<%= number_to_human_size(@file_size) %>"
+          ></span>
+          <span 
+            class=<%= 'hidden' unless @upload_completed %>
+            data-uploaded-file-target="metadata"
+          >
+            <%= @file_type.match(/\/(.+)/)[1].upcase %> &middot; <%= number_to_human_size(@file_size) %>
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="flex-shrink-0 z-10">
+      <div class="flex">
+        <%= button_tag data: { 'uploaded-file-target': 'open', action: 'click->uploaded-file#open' } class: 'mr-4' do %>
+          <svg>
+            <path>
+          </svg>
+        <% end %>
+        <%= button_tag data: { 'uploaded-file-target': 'close', action: 'click->uploaded-file#close' } class: 'hidden mr-5' do %>
+          <svg>
+            <path>
+          </svg>
+        <% end %>
+        <%= button_tag data: { 'uploaded-file-target': 'close', action: 'click->new-controller#close' } class: 'hidden mr-4' do %>
+          <svg>
+            <path>
+          </svg>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>Add UploadedFile template here</div>
+
+<%= button_tag data: { 'uploaded-file-target': 'delete', action: 'click->uploaded-file#delete' } class: 'hidden mr-4' do %>
+  
+<% end %>

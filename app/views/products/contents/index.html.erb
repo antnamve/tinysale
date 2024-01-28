@@ -1,0 +1,40 @@
+<%= form_with model: @product,
+  class: 'file-picker',
+  data: {
+    controller: 'file-picker',
+    action: 'submit->file-picker#submitForm',
+    'product-id': @product.slug
+  } do |f| %>
+  <%= render 'products/sticky_header', product: @product, form: f %>
+
+  <div class="space-y-12">
+    <div class="py-12">
+      <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div class="sm:col-span-3">
+          <%= turbo_frame_tag 'uploaded_files' do %>
+            <%= contents.each do |content| %>
+              <ul>
+                <%= render UploadedFileComponent.new(content_id: content.id, name: content.name, file_type: content.file_type, file_size: content.file_size, upload_completed: content.product_id.present?) %>
+              </ul>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <%# file form %>
+
+<input
+  class="hidden"
+  data-file-picker-target="fileinput"
+  data-action="change->file-picker#uploadfiles"
+  type="file"
+  multiple
+>
+<button
+  data-file-picker-target="button"
+  data-action="click->file-picker#open"
+>
+</button>

@@ -1,1 +1,19 @@
+<%# /products %>
+
 <%= link_to 'Add a new product', new_product_path %>
+
+<%# table with 4 columns %>
+
+<%= @products.each do |product| %>
+  <%= product.name %>
+  <%= product_url(product) %>
+  <%= humanized_money_with_symbol(product.price) %>
+  <%= product.published? ? 'Published' : 'Unpublished' %>
+  <%= link_to 'Edit', edit_product_path(product), class: '' %>
+
+  <% if product.thumbnail.attached? %>
+    <%= image_tag product.thumbnail %>
+  <% else %>
+    <%= image_tag ''%>
+  <% end %>
+<% end %>

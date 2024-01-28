@@ -10,6 +10,9 @@ application.register("combo-select", ComboSelectController)
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
+import FilePickerController from "./file_picker_controller"
+application.register("file-picker", FilePickerController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
@@ -22,8 +25,14 @@ application.register("nav", NavController)
 import NotificationController from "./notification_controller"
 application.register("notification", NotificationController)
 
+import ProductFormController from "./product_form_controller"
+application.register("product-form", ProductFormController)
+
 import TabsController from "./tabs_controller"
 application.register("tabs", TabsController)
 
 import TooltipController from "./tooltip_controller"
 application.register("tooltip", TooltipController)
+
+import UploadedFileController from "./uploaded_file_controller"
+application.register("uploaded-file", UploadedFileController)
