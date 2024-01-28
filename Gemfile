@@ -86,5 +86,5 @@ gem 'view_component'
 gem 'jsonapi-serializer'
 
 group :test do
-  gem 'shoulda-matchers', '~> 5.0'
+  gem 'shoulda-matchers', '~> 6.1'
 end
