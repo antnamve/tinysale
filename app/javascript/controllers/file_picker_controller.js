@@ -24,12 +24,14 @@ export default class extends Controller {
   } 
 
   uploadFiles(e) {
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    const headers = { "ACCEPT": "text/vnd.turbo-stream.html", "X-CSRF-Token": token }
     Array.from(e.target.files).forEach((file) => {
       axios.post("/api/contents", {
         name: file.name,
         file_size: file.size,
         file_type: file.type
-      }, { headers: this.HEADERS }) 
+      }, { headers: headers }) 
       .then(response => {
         const contentId = response.data.match(/data-content-id=("\d+")/)[1].replace(/"|'/g, '')
         file["contentId"] = parseInt(contentId)

@@ -13,6 +13,10 @@ class ProductsController < ApplicationController
     @product = current_user.products.build
   end
 
+  def show
+    @product = Product.friendly.find(params[:id])
+  end
+
   def update
     @product = Product.friendly.find(params[:id])
 
@@ -29,6 +33,6 @@ class ProductsController < ApplicationController
   def product_params
     params[:product].delete(:price) if params[:product][:price].to_f.zero?
 
-    params.require(:product).permit(:name, :price, :slug, :description, :thumbnail, contents: [])
+    params.require(:product).permit(:name, :price, :slug, :description, :cover, :thumbnail, contents: [])
   end
 end

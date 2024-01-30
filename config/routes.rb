@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index'
 
-  resource :products, only: %i[index edit new create] do
+  resource :products, only: %i[index edit new show create update] do
     resources :contents, only: :index, controller: 'products/contents'
     resources :attach_contents, only: :create, controller: 'products/attach_contents'
   end

@@ -28,6 +28,7 @@ export default class extends Controller {
     return `${fileType} * ${percentCompleted}% of ${totalFileSize} (${prettyBytes(uploadRate).toUpperCase()} / second)`
   }
   uploadFile() {
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     const config = {
       onUploadProgress: (progressEvent) => {
         const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
@@ -35,7 +36,7 @@ export default class extends Controller {
         this.metadataTarget.classList.add('hidden')
         this.uploadProgressTarget.textContent = this.uploadProgressText(percentCompleted, progressEvent.rate)
       },
-      headers: { "ACCEPT": "application/json" }
+      headers: { "ACCEPT": "application/json", "X-CSRF-Token": token }
     }
 
     const data = new FormData()

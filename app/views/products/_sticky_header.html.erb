@@ -1,0 +1,8 @@
+<%= turbo_frame_tag 'publish-button' do %>
+  <%= render  "products/publish_button", product: product %>
+<% end %>
+<%= f.submit 'Save Changes' %>
+
+<%= link_to 'Product', edit_product_path(product), class: '' %>
+
+<%= link_to 'Content', product_contents_path, class: 'link' %>

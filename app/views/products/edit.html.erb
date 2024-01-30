@@ -11,45 +11,64 @@
   <% end %>
   <%= f.submit 'Save changes' %>
 
-<%= link_to 'Product', edit_product_path(@product), class: '' %>
-<%= link_to 'Content', product_contents_path(@product) %>
+  <%= link_to 'Product', edit_product_path(@product), class: '' %>
+  <%= link_to 'Content', product_contents_path(@product) %>
 
-<%= f.label :name %>
-<%= f.text_field :name %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
-<%= f.label :description %>
-<%= f.rich_text_area :description %>
+  <%= f.label :description %>
+  <%= f.rich_text_area :description %>
 
-<%= f.label :slug, 'URL', class: '' %>
-https://www.tinysale.co/products/
+  <%= f.label :slug, 'URL', class: '' %>
+  https://www.tinysale.co/products/
 
-<%= f.text_field :slug, placeholder: 'airbnr-clone', class: '' %>
+  <%= f.text_field :slug, placeholder: 'airbnr-clone', class: '' %>
 
-<%= f.label :cover, class: '' %>
-<%= if product.cover.attached? %>
-  <%= image_tag @product.cover data: { 'product-form-target': 'thumbnail' } %> <%# .variant %>
-<% else %>
-  <%= image_tag '', data: { 'product-form-target': 'thumbnail' } %>
-<% end %>
+  <%= if product.cover.attached? %>
+    <%= image_tag @product.cover data: { 'product-form-target': 'cover' } %>
+  <% else %>
+    <div class="hidden">
+      <span data-action="click->product-form#changeCover">Upload a file</span>
+      <%= link_to 'Change cover', '', class: '', data: { action: 'product-form#changeCover' } %>
+      <%= image_tag '', data: { 'product-form-target': 'cover' } %>
+    </div>
+    <%= image_tag '', data: { 'product-form-target': 'thumbnail' } %>
+  <% end %>
 
-<%= f.file_field :thumbnail, data: { 'product-form-target': 'thumbnailInput', action: 'change->product-form#attachThumbnail' }, class: 'hidden' %>
+  <%= f.file_field :thumbnail, data: { 'product-form-target': 'thumbnailInput', action: 'change->product-form#attachThumbnail' }, class: 'hidden' %>
 
-<%= button_tag 'Change', data: { action: 'click->product-form#changeThumbnail' }, class: '' %>
+  <%= button_tag 'Change', data: { action: 'click->product-form#changeThumbnail' }, class: '' %>
+
+  <%= f.file_field :cover, data: { 'product-form-target': 'coverInput', action: 'change->product-form#attachCover' }, class: 'hidden' %>
+  <%= f.label :cover, class: '' %>
+  <div data-product-form-target="coverSection" class="<%= 'hidden' unless @product.cover.attached? %>">
+  </div>
+  <% if product.cover.attached? %>
+    <%= image_tag @product.cover data: { 'product-form-target': 'thumbnail' } %>
+  <% else %>
+  <div data-product-form-target="coverUploadSection <%= 'hidden' if @product.cover.attached? %>">
+  </div>
+    <label 
+      for="file-upload"
+      data-action="click->product-form#changeCover"
+    >
+    </label>
+    <span data-action="click->product-form#changeCover"></span>
+  <% end %>
 
 
-<%= f.label :thumbnail, class: '' %>
+  <%= f.label :thumbnail, class: '' %>
+  <%= if product.thumbnail.attached? %>
+    <%= image_tag @product.thumbnail data: { 'product-form-target': 'thumbnail' } %> <%# .variant %>
+  <% else %>
+    <%= image_tag '', data: { 'product-form-target': 'thumbnail' } %>
+  <% end %>
 
-<%= if product.thumbnail.attached? %>
-  <%= image_tag @product.thumbnail data: { 'product-form-target': 'thumbnail' } %> <%# .variant %>
-<% else %>
-  <%= image_tag '', data: { 'product-form-target': 'thumbnail' } %>
-<% end %>
+  <%= f.file_field :thumbnail, data: { 'product-form-target': 'thumbnailInput', action: 'change->product-form#attachThumbnail' }, class: 'hidden' %>
 
-<%= f.file_field :thumbnail, data: { 'product-form-target': 'thumbnailInput', action: 'change->product-form#attachThumbnail' }, class: 'hidden' %>
+  <%= button_tag 'Change', data: { action: 'click->product-form#changeThumbnail' }, class: '' %>
 
-<%= button_tag 'Change', data: { action: 'click->product-form#changeThumbnail' }, class: '' %>
-
-<%= f.label :price %>
-<%= f.text_field :price %>
-
+  <%= f.label :price %>
+  <%= f.text_field :price %>
 <% end %>
