@@ -81,7 +81,7 @@ gem "meta-tags"
 # my gems
 gem 'sassc-rails'
 gem 'money-rails', '~> 1.12'
-gem 'friendly_id', '~> 5.4.0'
+gem 'friendly_id', '~> 5.5.1'
 gem 'view_component'
 gem 'jsonapi-serializer'
 
