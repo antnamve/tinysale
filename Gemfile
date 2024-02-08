@@ -73,7 +73,7 @@ group :development do
 end
 
 
-gem "railsui", "~> 1.0", :github => "getrailsui/railsui", :branch => "main"
+gem "railsui", "~> 2.0", :github => "getrailsui/railsui", :branch => "main"
 gem "devise"
 gem "name_of_person"
 gem "meta-tags"
